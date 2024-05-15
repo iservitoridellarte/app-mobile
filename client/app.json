@@ -1,0 +1,54 @@
+{
+  "expo": {
+    "name": "I Servitori Dell'Arte",
+    "slug": "iservitoridellarte",
+    "version": "1.6.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/servitori-splash-screen.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#161616"
+    },
+    "updates": {
+      "enabled": true,
+      "useClassicUpdates": true,
+      "url": "https://u.expo.dev/fdefbf48-cd51-4ab4-b8e3-fbe9d8de0c83"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.iservitoridellarte"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.iservitoridellarte",
+      "versionCode": 5
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      [
+        "@stripe/stripe-react-native",
+        {
+          "enableGooglePay": true
+        }
+      ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "fdefbf48-cd51-4ab4-b8e3-fbe9d8de0c83"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}
