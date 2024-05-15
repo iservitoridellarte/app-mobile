@@ -13,7 +13,6 @@
     },
     "updates": {
       "enabled": true,
-      "useClassicUpdates": true,
       "url": "https://u.expo.dev/fdefbf48-cd51-4ab4-b8e3-fbe9d8de0c83"
     },
     "assetBundlePatterns": [

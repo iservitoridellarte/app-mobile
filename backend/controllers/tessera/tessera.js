@@ -71,7 +71,7 @@ module.exports.createTessera = async (req, res) => {
 module.exports.createTesseraAdmuin = async (req, res) => {
 try {
   const { name, residenza, cellulare, numeroTessera, dataScadenza } = req.body;
-
+  console.log(req.body)
   const tessera = new Tessera({
     name,
     residenza,
@@ -88,6 +88,7 @@ try {
     data: tessera,
   });
 } catch (error) {
+  console.log(error)
   return res.status(500).json({
     success: false,
     message: "Errore durante la creazione della tessera",
