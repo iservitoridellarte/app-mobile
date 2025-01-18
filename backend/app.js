@@ -131,6 +131,69 @@ app.post('/photos/upload', upload.array('photos', 12), function (req, res, next)
   }
 })
 
+// DELETE USER API
+app.post('/delete-user', async (req, res) => {
+  try {
+    const { userId } = req.body; // Estrarre l'ID dell'utente dal body della richiesta
+
+    if (!userId) {
+      return res.status(400).json({ success: false, message: 'User ID is required' });
+    }
+
+    // Eliminare l'utente dal database
+    const deletedUser = await User.findByIdAndDelete(userId);
+
+    if (!deletedUser) {
+      return res.status(404).json({ success: false, message: 'User not found' });
+    }
+
+    return res.status(200).json({ success: true, message: 'User deleted successfully', data: deletedUser });
+  } catch (error) {
+    console.error('Error deleting user:', error);
+    return res.status(500).json({ success: false, message: 'Server error' });
+  }
+});
+
+app.post('/update-user', async (req, res) => {
+  try {
+    const { userId, updates } = req.body; // Estrai l'ID dell'utente e i campi da aggiornare
+
+    if (!userId || !updates) {
+      return res.status(400).json({
+        success: false,
+        message: 'User ID and updates are required',
+      });
+    }
+
+    // Trova e aggiorna l'utente
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      { $set: updates }, // Aggiorna solo i campi forniti
+      { new: true, runValidators: true } // Restituisce il documento aggiornato
+    );
+
+    if (!updatedUser) {
+      return res.status(404).json({
+        success: false,
+        message: 'User not found',
+      });
+    }
+
+    res.status(200).json({
+      success: true,
+      message: 'User updated successfully',
+      data: updatedUser,
+    });
+  } catch (error) {
+    console.error('Error updating user:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Server error',
+      error: error.message,
+    });
+  }
+});
+
 app.listen((process.env.PORT || 8080), () => {
   console.log(`Servitori dell\'arte in ascolto su ${process.env.PORT}!`)
 });

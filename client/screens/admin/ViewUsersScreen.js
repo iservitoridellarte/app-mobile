@@ -161,6 +161,26 @@ const ViewUsersScreen = ({ navigation, route }) => {
         });
   }
 
+  const deleteUserAccount = (username, id) => {
+    console.log(`Eliminare account di: ${username}`);
+      try {
+        const response = await axios.post('http://localhost:8080/delete-user', {
+          userId: id,
+        });
+    
+        if (response.data.success) {
+          console.log('Utente eliminato con successo:', response.data);
+          return response.data;
+        } else {
+          console.error('Errore durante l\'eliminazione dell\'utente:', response.data.message);
+          return response.data;
+        }
+      } catch (error) {
+        console.error('Errore durante la richiesta:', error.message);
+        return { success: false, message: error.message };
+      }
+  };
+
   return (
     <View style={styles.container}>
       <ProgressDialog visible={isloading} label={label} />
@@ -218,11 +238,13 @@ const ViewUsersScreen = ({ navigation, route }) => {
               key={index}
               username={item?.name}
               email={item?.email}
+              id={item?._id}
               usertype={item?.userType}
               onPress={() => handleEdit(item)}
               partecipazione={item?.partecipazione ? item.partecipazione : '0'}
               tesseraGratis={item?.tesseraGratis ? item.tesseraGratis == true ? "Si" : "No" : ""}
               scontoGratis={item?.scontoGratis ? item.scontoGratis == true ? "Si" : "No" : ""}
+              deleteUserAccount={deleteUserAccount}
             />
           ))
           :

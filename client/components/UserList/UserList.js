@@ -3,7 +3,7 @@ import React from "react";
 import { Ionicons } from "@expo/vector-icons";
 import { colors } from "../../constants";
 
-const UserList = ({ username, email, onPress, partecipazione, tesseraGratis, scontoGratis }) => {
+const UserList = ({ username, email, onPress, partecipazione, tesseraGratis, scontoGratis, deleteUserAccount, id }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       <View style={styles.profileContainer}>
@@ -20,6 +20,16 @@ const UserList = ({ username, email, onPress, partecipazione, tesseraGratis, sco
         <Text style={styles.userEmailText}>Tessera Gratuita: {tesseraGratis}</Text>
         <Text style={styles.userEmailText}>Sconto Gratuito: {scontoGratis}</Text>
       </View>
+      <TouchableOpacity
+        style={styles.deleteIconContainer}
+        onPress={() => deleteUserAccount(username, id)}
+      >
+        <Ionicons
+          name="trash-outline"
+          size={30}
+          color={colors.primary_light}
+        />
+      </TouchableOpacity>
     </TouchableOpacity>
   );
 };

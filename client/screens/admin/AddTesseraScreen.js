@@ -42,9 +42,10 @@ import {
       return JSON.parse(obj).token;
     };
 
+    const [show, setShow] = useState(false)
     const onChangeDate = (event, selected) => {
+      setShow(false)
       if (event.type === 'set') {
-        setDataScadMod(selected);
         setDataScadMod(selected);
         console.log(selected);
       } else if (event.type === 'dismissed') {
@@ -168,21 +169,23 @@ import {
               placeholderTextColor={colors.muted}
               radius={5}
             />
-          <Text style={{
-            fontSize: 22,
-            marginTop: 26,
-            marginBottom: 10,
-            fontWeight: '500',
-            color: colors.muted,
-            textAlign: 'center',
-          }}>Modifica la data</Text>
-          <DateTimePicker
+            <TouchableOpacity activeOpacity={0.9} onPress={() => setShow(true)}>
+              <Text style={{
+                fontSize: 22,
+                marginTop: 26,
+                marginBottom: 10,
+                fontWeight: '500',
+                color: colors.muted,
+                textAlign: 'center',
+              }}>Modifica la data</Text>            
+            </TouchableOpacity>
+          {show && <DateTimePicker
             value={dataScadMod && dataScadMod}
             mode="date"
             is24Hour={true}
             display="default"
             onChange={onChangeDate}
-          />
+          />}
           </View>
         </ScrollView>
   

@@ -33,11 +33,11 @@ const TesseraList = ({
           </View>
           <View style={styles.productInfoItem}>
             <Text style={styles.productInfoItemText}>Email: </Text>
-            <Text>{price}</Text>
+            <Text>{price ? price : "N/F"}</Text>
           </View>
           <View style={styles.productInfoItem}>
             <Text style={styles.productInfoItemText}>Tel: </Text>
-            <Text>{qantity <= 0 ? "Out of Stock" : qantity}</Text>
+            <Text>{qantity <= 0 ? "N/F" : qantity}</Text>
           </View>
         </View>
       </View>

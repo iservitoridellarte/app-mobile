@@ -229,7 +229,9 @@ const AddProductScreen = ({ navigation, route }) => {
     }
   };
 
+  const [show, setShow] = useState(false)
   const onChangeDate = (event, selected) => {
+    setShow(false)
     if (event.type === 'set') {
       setSelectedDate(selected);
     } else if (event.type === 'dismissed') {
@@ -349,13 +351,13 @@ const AddProductScreen = ({ navigation, route }) => {
             color: colors.muted,
             textAlign: 'center',
           }}>Seleziona la data</Text>
-          <DateTimePicker
+          {show && <DateTimePicker
             value={selectedDate}
             mode="date"
             is24Hour={true}
             display="default"
             onChange={onChangeDate}
-          />
+          />}
         </View>
       </ScrollView>
       <DropDownPicker

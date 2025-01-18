@@ -197,7 +197,7 @@ import {
                     key={index}
                     user={false}
                   />  
-                )} 
+                )}
             )
 
           ) : (

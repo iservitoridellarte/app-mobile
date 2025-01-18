@@ -328,15 +328,12 @@ const HomeScreen = ({ navigation, route }) => {
                 initialNumToRender={5}
                 horizontal={true}
                 data={products
+                  .filter(product => new Date(product.data) >= today)
                   .sort((a, b) => {
-                    const today = new Date();
                     const dateA = new Date(a.data);
                     const dateB = new Date(b.data);
-                    
-                    const diffA = Math.abs(today - dateA);
-                    const diffB = Math.abs(today - dateB);
               
-                    return diffA - diffB;
+                    return dateA - dateB;
                   })
                   .slice(0, 4)}
                 keyExtractor={(item) => item._id}

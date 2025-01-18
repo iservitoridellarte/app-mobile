@@ -189,7 +189,9 @@ const EditProductScreen = ({ navigation, route }) => {
     hideDatePicker();
   };
 
+  const [show, setShow] = useState(false)
   const onChangeDate = (event, selected) => {
+    setShow(false)
     if (event.type === 'set') {
       setDataScadMod(selected);
       console.log(selected);
@@ -300,13 +302,13 @@ const EditProductScreen = ({ navigation, route }) => {
             color: colors.muted,
             textAlign: 'center',
           }}>Modifica la data</Text>
-          <DateTimePicker
+          {show && <DateTimePicker
             value={dataScadMod && dataScadMod}
             mode="date"
             is24Hour={true}
             display="default"
             onChange={onChangeDate}
-          />
+          />}
         </View>
       </ScrollView>
       <View style={styles.buttomContainer}>
